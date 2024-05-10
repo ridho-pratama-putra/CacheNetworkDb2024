@@ -1,8 +1,11 @@
 package com.example.cachenetworkdb2024
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.cachenetworkdb2024.worker.RefreshVideoWorker
@@ -27,9 +30,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecurringWork() {
+        val constraints: Constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.UNMETERED) // when user not charges for network ie: public wifi
+            .setRequiresBatteryNotLow(true)
+            .apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    setRequiresDeviceIdle(true)
+                }
+            }
+            .build()
         val repeatingRequest = PeriodicWorkRequestBuilder<RefreshVideoWorker>(
             10, TimeUnit.SECONDS
-        ).build()
+        )
+            .setConstraints(constraints)
+            .build()
 
         WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
             RefreshVideoWorker.WORK_NAME,
