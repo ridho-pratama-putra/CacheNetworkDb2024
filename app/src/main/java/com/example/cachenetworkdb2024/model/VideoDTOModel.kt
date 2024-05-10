@@ -1,4 +1,4 @@
-package com.example.cachenetworkdb2024.Model
+package com.example.cachenetworkdb2024.model
 
 import com.squareup.moshi.JsonClass
 

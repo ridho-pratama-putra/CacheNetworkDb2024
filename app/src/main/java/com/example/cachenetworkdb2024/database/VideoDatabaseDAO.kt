@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.cachenetworkdb2024.Model.VideoDatabaseModel
+import com.example.cachenetworkdb2024.model.VideoDatabaseModel
 
 @Dao
 interface VideoDatabaseDAO {

@@ -1,5 +1,6 @@
-package com.example.cachenetworkdb2024.Model
+package com.example.cachenetworkdb2024.model
 
+import android.net.Uri
 import com.example.cachenetworkdb2024.util.smartTruncate
 
 data class VideoDomainModel(
@@ -13,5 +14,11 @@ data class VideoDomainModel(
     val shortDescription: String
         get() {
             return description.smartTruncate(200)
+        }
+
+    val launchUri: Uri
+        get() {
+            val httpUri = Uri.parse(url)
+            return Uri.parse("vnd.youtube:" + httpUri.getQueryParameter("v"))
         }
 }

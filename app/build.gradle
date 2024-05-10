@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
+apply plugin: 'kotlin-kapt' // enabling kotlin support for data binding adapter
+
 android {
     namespace 'com.example.cachenetworkdb2024'
     compileSdk 34
@@ -57,8 +59,16 @@ dependencies {
     implementation libs.androidx.ui.tooling.preview
     implementation libs.androidx.material3
     implementation "androidx.room:room-runtime:2.6.1"
+    kapt "androidx.room:room-compiler:2.6.1"
     implementation "com.squareup.moshi:moshi:1.13.0"
     implementation "com.squareup.moshi:moshi-kotlin:1.13.0"
+    implementation "com.squareup.retrofit2:retrofit:2.11.0"
+    implementation "com.squareup.retrofit2:converter-moshi:2.11.0"
+    implementation "com.github.bumptech.glide:glide:4.16.0"
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
+
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit

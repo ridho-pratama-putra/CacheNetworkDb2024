@@ -1,4 +1,4 @@
-package com.example.cachenetworkdb2024.Model
+package com.example.cachenetworkdb2024.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
