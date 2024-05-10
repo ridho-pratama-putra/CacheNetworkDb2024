@@ -16,18 +16,19 @@ class VideoDatabaseModel (
     val description: String,
     val thumbnail: String
 ){
+}
 
-    /**
-     * Convert database results to domain objects
-     */
-    fun List<VideoDatabaseModel>.asDomainModel(): List<VideoDomainModel> {
-        return map {
-            VideoDomainModel(
-                url = it.url,
-                title = it.title,
-                description = it.description,
-                updated = it.updated,
-                thumbnail = it.thumbnail)
-        }
+/**
+ * Convert database results to domain objects
+ * extension function must be located outside from
+ */
+fun List<VideoDatabaseModel>.asDomainModel(): List<VideoDomainModel> {
+    return map {
+        VideoDomainModel(
+            url = it.url,
+            title = it.title,
+            description = it.description,
+            updated = it.updated,
+            thumbnail = it.thumbnail)
     }
 }
